@@ -133,6 +133,8 @@ async function getStoreInfo(tienda) {
         $(e).text(info[campo]);
     });
 
+    document.title = "Tienda " + info.nombre_tienda
+
     if(info.logoUrl) {
         $("img[alt='Logo tienda']").attr("src", info.logoUrl);
     }

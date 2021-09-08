@@ -36,7 +36,7 @@ exports.obtenerProductos = async (req, res) => {
             // y el nombre de la tienda que lo contiene.
             let editProducto = producto.data();
             console.log(producto.data())
-            editProducto.showImg = editProducto.imagesUrl[0] ? editProducto.imagesUrl[0].url : "/img/heka entrega.png";
+            editProducto.showImg = editProducto.imagesUrl[0] ? editProducto.imagesUrl[0].url : "/img/e-flex-logo.jpeg";
             editProducto.showStock = editProducto.stock[0];
             editProducto.id = producto.id;
             editProducto.nombre_tienda = req.params.nombre_tienda;
