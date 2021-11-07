@@ -10,7 +10,7 @@ $(".vaciar-carrito").click(vaciarCarrito);
 $("[data-campo]").change(modifyPricesAndLimitsPerProduct);
 
 let storeInfo;
-let tienda = window.location.hostname.split(".")[0];
+let tienda = window.location.pathname.split("/")[2];
 
 const Toast = Swal.mixin({
     toast: true,
@@ -130,7 +130,7 @@ async function getStoreInfo(tienda) {
 
     $("[data-store_info]").each((i,e) => {
         let campo = e.getAttribute("data-store_info");
-        $(e).text(info[campo]);
+        $(e).html(info[campo]);
     });
 
     document.title = "Tienda " + info.nombre_tienda
@@ -563,7 +563,7 @@ function llenarNotificacionCarrito(carrito) {
             atributos += `<small class="mr-2"><b>${attr}:</b> ${item.atributos[attr]} </small>`; 
         }
 
-        notificacion.innerHTML += `<a href="/producto/${item.id_producto}" class="dropdown-item notify-item">
+        notificacion.innerHTML += `<a href="/tienda/${tienda}/producto/${item.id_producto}" class="dropdown-item notify-item">
             <div class="notify-icon">
                 <img src="${item.imagesUrl ? item.imagesUrl.url : "/img/heka entrega.png"}" class="img-fluid rounded-circle" alt="" /> </div>
             <p class="notify-details">${item.nombre}</p>
@@ -573,7 +573,7 @@ function llenarNotificacionCarrito(carrito) {
         </a>`;
 
         menu.innerHTML += `<li>
-            <a href="/producto/${item.id_producto}">
+            <a href="/tienda/${tienda}/producto/${item.id_producto}">
                 <span> ${item.nombre} <small>(${item.detalles.cod})</small> </span>
             </a>
         </li>`;
@@ -676,7 +676,7 @@ function currency(val) {
 $(document).ready(function() {
     //solicitamos la info de la tienda
     getStoreInfo(tienda);
-    fetch("/tienda/carrito?json=true")
+    fetch("/tienda/getCarrito")
     .then(res => {
         console.log(res);
         res.json().then(d => llenarNotificacionCarrito(d));

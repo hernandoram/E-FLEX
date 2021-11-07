@@ -3,7 +3,7 @@ const firebase = require("../firebase");
 const db = firebase.firestore();
 
 exports.buscarTienda = async (req, res, next) => {
-    let nombre_tienda = req.vhost.hostname.split(".")[0];
+    let nombre_tienda = req.params.tienda;
     req.params.nombre_tienda = nombre_tienda;
     console.log(nombre_tienda);
     let id = await db.collection("tiendas").where("tienda", "==", nombre_tienda)
@@ -19,8 +19,8 @@ exports.buscarTienda = async (req, res, next) => {
     //Realizo la busqueda de la tienda especificada en host par obtener su id
     //Luego utilizo esa información y lo paso como parámetro al siguiente middleware
     req.params.tiendaId = id;
-    if (!req.session.tienda) req.session.tienda = req.params.nombre_tienda;
-    if(!id) return res.status(404).render("404", {url: req.vhost.hostname})
+    req.session.tienda = req.params.nombre_tienda;
+    if(!id) return res.status(404).render("404", {url: req.originalUrl})
 
     next();
 };
@@ -86,7 +86,7 @@ exports.carritoDeCompra = (req, res) => {
 exports.getCarrito = (req, res) => {
     //Devuelve un json del carrito
     console.log("CARRITO", req.session.carrito);
-    res.json(req.session.carrito || {});
+    res.json(req.session.carrito || []);
 }
 
 exports.agregarAlCarrito = async (req, res) => {

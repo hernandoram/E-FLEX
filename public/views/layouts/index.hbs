@@ -91,7 +91,7 @@
                       </div>
 
                       <!-- All-->
-                      <a href="/tienda/carrito" class="dropdown-item text-center text-primary notify-item notify-all">
+                      <a href="/tienda/{{session.tienda}}/carrito" class="dropdown-item text-center text-primary notify-item notify-all">
                           Ver carrito
                           <i class="fe-arrow-right"></i>
                       </a>
@@ -116,7 +116,7 @@
 
               <!-- LOGO -->
               <div class="logo-box">
-                  <a href="/" class="logo text-center">
+                  <a href="/tienda/{{session.tienda}}/productos" class="logo text-center">
                     <img src="/img/e-flex-logo.jpeg" class="rounded-circle" alt="Logo tienda" height="40">
                   </a>
               </div>
@@ -170,19 +170,19 @@
                       <div class="dropdown-menu user-pro-dropdown">
 
                           <!-- item-->
-                          <a href="/" class="dropdown-item notify-item">
+                          <a href="/tienda/{{session.tienda}}/productos" class="dropdown-item notify-item">
                               <i class="fa fa-store mr-1"></i>
                               <span>Productos</span>
                           </a>
 
                           <!-- item-->
-                          <a href="/carrito" class="dropdown-item notify-item">
+                          <a href="/tienda/{{session.tienda}}/carrito" class="dropdown-item notify-item">
                               <i class="fa fa-shopping-cart mr-1"></i>
                               <span>Carrito</span>
                           </a>
                       </div>
                   </div>
-                  <p class="text-muted text-truncate mx-2" data-store_info="descripcion">comentarios agregados de la tienda u alguna descripcion</p>
+                  <div data-store_info="descripcion">comentarios agregados de la tienda u alguna descripcion</div>
                   <p class="text-muted mx-2" data-store_info="nombre"></p>
                   <p class="text-muted mx-2" data-store_info="celular"></p>
                   <p class="text-muted mx-2" data-store_info="correo"></p>
@@ -205,14 +205,14 @@
                     </li>
 
                     <li>
-                        <a href="/carrito">
+                        <a href="/tienda/{{session.tienda}}/carrito">
                             <i data-feather="shopping-cart"></i>
                             <span> Ver carrito </span>
                         </a>
                     </li>
                       
                     <li>
-                        <a href="/">
+                        <a href="/tienda/{{session.tienda}}/productos">
                             <i data-feather="archive"></i>
                             <span> Productos </span>
                         </a>
@@ -242,11 +242,11 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6">
-                        2018 - <script>document.write(new Date().getFullYear())</script> &copy; <a href="../eflex/eflex.html">E-FLEX</a> 
+                        2018 - <script>document.write(new Date().getFullYear())</script> &copy; <a href="/">E-FLEX</a> 
                     </div>
                     <div class="col-md-6">
                         <div class="text-md-right footer-links d-none d-sm-block">
-                            <a href="/index.html">Inicio</a>
+                            <a href="/">Inicio</a>
                         </div>
                     </div>
                 </div>
