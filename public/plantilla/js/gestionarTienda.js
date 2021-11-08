@@ -928,10 +928,9 @@ function obtenerLinkTienda(data) {
         contenedor.addClass("alert-success");
         let host = window.location.host;
         host = host.split(".")[0] == "www" ? host.split(".").splice(0,1).join(".") : host
-        let dir = data.tienda + "." + host;
-        let protocol = window.location.protocol;
+        let dir = host + "/tienda/" + data.tienda + "/productos";
         link.innerHTML = dir;
-        btnLink.setAttribute("href", protocol + "//" + dir);
+        btnLink.setAttribute("href", "/tienda/"+data.tienda+"/productos");
         btnLink.innerText = "Ver tienda";
     };
 
@@ -947,10 +946,10 @@ function muestraDelLinkTienda() {
     this.value = this.value.toLowerCase();
     let protocol = window.location.protocol;
     let host = window.location.hostname;
-    host = host.split(".")[0] == "www" ? host.split(".").splice(0,1).join(".") : host
+    // host = host.split(".")[0] == "www" ? host.split(".").splice(0,1).join(".") : host
 
     let valor = this.value;
-    $("#ver-url-tienda").html(protocol + "//" + "<b>" + valor + "</b>." + host);
+    $("#ver-url-tienda").html(host + "/tienda/<b>" + valor + "</b>" + "/productos");
 }
 
 async function actualizarTienda() {
