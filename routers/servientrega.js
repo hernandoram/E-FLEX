@@ -7,7 +7,6 @@ const requestPromise = require("request-promise");
 const parseString = require("xml2js").parseString;
 const DOMParser = require("xmldom").DOMParser;
 const bodyParser = require("body-parser");
-const cron = require("node-cron");
 const {PDFDocument} = require("pdf-lib");
 const fs = require("fs");
 const Blob = require("node-blob");
@@ -78,25 +77,6 @@ function estadoGuia(numGuia){
     </soap:Body>
   </soap:Envelope>`
 }
-
-cron.schedule("00 */6 * * *", () => {
-  let d = new Date();
-  console.log("Se Actualizaron los movimientos de las guías: ", d);
-  actualizarMovimientosGuias(d).then((detalles) => {
-    console.log(detalles);
-    firebase.firestore().collection("reporte").add(detalles);
-   });
-});
-
-cron.schedule("0 0 * * 0", () => {
-  let d = new Date();
-  console.log("Se Actualizaron los movimientos de las guías: ", d);
-  actualizarMovimientosGuias(d, true).then((detalles) => {
-    console.log(detalles);
-    detalles.actulización_semanal = true;
-    firebase.firestore().collection("reporte").add(detalles);
-   });
-});
 
 
 // actualizarEstadosGuias(new Date());
